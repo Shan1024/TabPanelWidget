@@ -50,6 +50,49 @@
 
     </div>
 
+    <div class ="tab-panels">
+
+        <ul class="tabs">
+          <li rel="panel5" class="active">panel5</li>
+          <li rel="panel6">panel6</li>
+          <li rel="panel7">panel7</li>
+          <li rel="panel8">panel8</li>
+        </ul>
+
+      <div id="panel5" class="panel active">
+        content5<br>
+        content5<br>
+        content5<br>
+        content5<br>
+        content5<br>
+      </div>
+
+      <div id="panel6" class="panel">
+        content6<br>
+        content6<br>
+        content6<br>
+        content6<br>
+        content6<br>
+      </div>
+
+      <div id="panel7" class="panel">
+        content7<br>
+        content7<br>
+        content7<br>
+        content7<br>
+        content7<br>
+      </div>
+
+      <div id="panel8" class="panel">
+        content8<br>
+        content8<br>
+        content8<br>
+        content8<br>
+        content8<br>
+      </div>
+
+    </div>
+
     <script src="scripts/jquery.min.js"></script>
 
     <script>
@@ -59,8 +102,10 @@
         //Listen for the mouse click action
         $('.tab-panels .tabs li').on('click',function(){
 
+          var $panel = $(this).closest('.tab-panels');
+
           //Remove the active class from the current tab
-          $('.tab-panels .tabs li.active').removeClass('active');
+          $panel.find('.tabs li.active').removeClass('active');
 
           //Add the active class to the clicked tab
           $(this).addClass('active');
@@ -69,7 +114,7 @@
           var panelToShow = $(this).attr('rel');
 
           //Slide up the panel
-          $('.tab-panels .panel.active').slideUp(300, showNextPanel);
+          $panel.find('.panel.active').slideUp(300, showNextPanel);
 
           function showNextPanel(){
 
