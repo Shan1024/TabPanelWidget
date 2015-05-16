@@ -10,10 +10,10 @@
     <div class ="tab-panels">
 
         <ul class="tabs">
-          <li class ="active">panel1</li>
-          <li>panel2</li>
-          <li>panel3</li>
-          <li>panel4</li>
+          <li rel="panel1" class="active">panel1</li>
+          <li rel="panel2">panel2</li>
+          <li rel="panel3">panel3</li>
+          <li rel="panel4">panel4</li>
         </ul>
 
       <div id="panel1" class="panel active">
@@ -51,6 +51,46 @@
     </div>
 
     <script src="scripts/jquery.min.js"></script>
+
+    <script>
+
+      $(function(){
+
+        //Listen for the mouse click action
+        $('.tab-panels .tabs li').on('click',function(){
+
+          //Remove the active class from the current tab
+          $('.tab-panels .tabs li.active').removeClass('active');
+
+          //Add the active class to the clicked tab
+          $(this).addClass('active');
+
+          //Get the attribute rel. This contains the panel name
+          var panelToShow = $(this).attr('rel');
+
+          //Slide up the panel
+          $('.tab-panels .panel.active').slideUp(300, showNextPanel);
+
+          function showNextPanel(){
+
+            //Remove the class active from current panel
+            $(this).removeClass('active');
+
+            //Slide down the relevent panel
+            $('#'+panelToShow).slideDown(300,function(){
+
+              //Add the class active to the shown panel
+              $(this).addClass('active');
+
+            });
+
+          }
+
+        });
+
+      });
+
+    </script>
 
   </body>
 
